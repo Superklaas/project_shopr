@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_book", discriminatorType = DiscriminatorType.STRING)
-@MappedSuperclass
 public abstract class Book extends Item {
 
     private String author;
