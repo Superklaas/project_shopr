@@ -1,7 +1,10 @@
-package be.vdab.domain.item.lp;
+package be.vdab.domain.item;
 
-import be.vdab.domain.item.Item;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("LP")
 public class LP extends Item {
 
     private String artist;
@@ -25,4 +28,7 @@ public class LP extends Item {
         return this;
     }
 
+    public enum Genre {
+        CLASSICAL, POP, ROCK, DANCE, RB, HIPHOP;
+    }
 }

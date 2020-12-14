@@ -1,13 +1,21 @@
 package be.vdab.domain.item;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "item_type", discriminatorType = DiscriminatorType.STRING)
+@MappedSuperclass
 public abstract class Item {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private double price;
     private int supplierId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

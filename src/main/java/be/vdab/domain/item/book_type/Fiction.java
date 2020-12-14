@@ -1,7 +1,12 @@
-package be.vdab.domain.item.fiction;
+package be.vdab.domain.item.book_type;
 
 import be.vdab.domain.item.Book;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("FICTION")
 public class Fiction extends Book {
 
     private Genre genre;
@@ -25,4 +30,7 @@ public class Fiction extends Book {
         return this;
     }
 
+    public enum Genre {
+        THRILLER, FANTASY, DETECTIVE, ROMANCE, SCIFI;
+    }
 }

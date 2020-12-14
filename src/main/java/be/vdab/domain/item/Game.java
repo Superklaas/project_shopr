@@ -1,7 +1,10 @@
-package be.vdab.domain.item.game;
+package be.vdab.domain.item;
 
-import be.vdab.domain.item.Item;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("GAME")
 public class Game extends Item {
 
     private String publisher;
@@ -33,5 +36,9 @@ public class Game extends Item {
     public Game setGenre(Genre genre) {
         this.genre = genre;
         return this;
+    }
+
+    public enum Genre {
+        MMORPG, RPG, FPS, RTS, RACE;
     }
 }
