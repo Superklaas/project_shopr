@@ -2,6 +2,8 @@ package be.vdab.domain.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
 @DiscriminatorValue("GAME")
