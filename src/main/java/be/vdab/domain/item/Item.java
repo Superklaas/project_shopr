@@ -2,8 +2,7 @@ package be.vdab.domain.item;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Item {
 
     @Id

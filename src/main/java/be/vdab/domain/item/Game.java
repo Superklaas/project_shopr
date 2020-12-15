@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@DiscriminatorValue("GAME")
 public class Game extends Item {
 
     private String publisher;
