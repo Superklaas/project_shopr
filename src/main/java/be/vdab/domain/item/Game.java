@@ -1,9 +1,7 @@
 package be.vdab.domain.item;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @DiscriminatorValue("GAME")
@@ -13,34 +11,56 @@ public class Game extends Item {
     private int minimumAge;
     private Genre genre;
 
+    public Game() { }
+
+    public Game(Long id, String title, double price, String supplierId, String publisher, int minimumAge, Genre genre) {
+        super(id, title, price, supplierId);
+        this.publisher = publisher;
+        this.minimumAge = minimumAge;
+        this.genre = genre;
+    }
+
     public String getPublisher() {
         return publisher;
     }
 
-    public Game setPublisher(String publisher) {
+    public void setPublisher(String publisher) {
         this.publisher = publisher;
-        return this;
     }
 
     public int getMinimumAge() {
         return minimumAge;
     }
 
-    public Game setMinimumAge(int minimumAge) {
+    public void setMinimumAge(int minimumAge) {
         this.minimumAge = minimumAge;
-        return this;
     }
 
     public Genre getGenre() {
         return genre;
     }
 
-    public Game setGenre(Genre genre) {
+    @Enumerated(EnumType.ORDINAL)
+    public void setGenre(Genre genre) {
         this.genre = genre;
-        return this;
     }
 
     public enum Genre {
         MMORPG, RPG, FPS, RTS, RACE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return minimumAge == game.minimumAge &&
+                Objects.equals(publisher, game.publisher) &&
+                genre == game.genre;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(publisher, minimumAge, genre);
     }
 }
