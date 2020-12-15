@@ -11,6 +11,8 @@ public class Game extends Item {
     private int minimumAge;
     private Genre genre;
 
+    public Game() { }
+
     public String getPublisher() {
         return publisher;
     }

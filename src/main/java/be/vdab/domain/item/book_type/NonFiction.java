@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("NON_FICTION")
 public class NonFiction extends Book {
 
+    private Long id;
+
+    public NonFiction() { }
+
     private Subject subject;
 
     public enum Subject {

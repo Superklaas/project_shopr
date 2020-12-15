@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name="type_item", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item {
 
     @Id
@@ -12,6 +13,10 @@ public abstract class Item {
     private String title;
     private double price;
     private int supplierId;
+
+    public Item() {
+
+    }
 
     public Long getId() {
         return id;

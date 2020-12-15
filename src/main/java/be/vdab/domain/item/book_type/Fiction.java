@@ -12,6 +12,8 @@ public class Fiction extends Book {
     private Genre genre;
     private String summary;
 
+    public Fiction() { }
+
     public Genre getGenre() {
         return genre;
     }

@@ -10,6 +10,8 @@ public class LP extends Item {
     private String artist;
     private Genre genre;
 
+    public LP() { }
+
     public String getArtist() {
         return artist;
     }
