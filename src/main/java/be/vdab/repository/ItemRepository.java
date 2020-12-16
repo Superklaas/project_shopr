@@ -9,9 +9,8 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item,Integer> {
 
-    default void createItem(Item item) {
-        save(item);
-    }
+    @Query("select i from Item i order by i.article_type, i.title, i.price asc")
+    List<Book> getAllItems();
 
     @Query("select b from Book b order by b.title, b.author, b.price asc")
     List<Book> getAllBooks();
@@ -27,13 +26,5 @@ public interface ItemRepository extends JpaRepository<Item,Integer> {
 
     @Query("select l from LP l order by l.title, l.artist, l.price asc")
     List<Book> getAllLPs();
-
-    default void updateItem(Item item) {
-        save(item);
-    }
-
-    default void deleteItem(Item item) {
-        delete(item);
-    }
 
 }

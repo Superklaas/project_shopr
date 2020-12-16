@@ -5,7 +5,6 @@ import be.vdab.domain.Review;
 
 import javax.persistence.*;
 
-@MappedSuperclass
 @Entity
 @DiscriminatorColumn(name = "article_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item {
@@ -17,6 +16,7 @@ public abstract class Item {
     private double price;
     private String supplierId;
     private int inventory;
+    private String article_type;
 
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE,
