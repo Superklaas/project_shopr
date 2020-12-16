@@ -7,6 +7,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "book_type",discriminatorType = DiscriminatorType.STRING)
 public abstract class Book extends Item {
 
+    private String book_type;
     private String author;
     private String isbn;
     private int pages;
