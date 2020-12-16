@@ -15,6 +15,7 @@ public abstract class Book extends Item {
             message = "ISBN must be valid")
     private String isbn;
     private int pages;
+    private String book_type;
 
     public Book() { }
 

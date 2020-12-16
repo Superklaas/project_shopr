@@ -6,6 +6,7 @@ import be.vdab.domain.Review;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "article_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item {
 
@@ -27,6 +28,7 @@ public abstract class Item {
 
     @OneToOne
     private Review review;
+
 
     public Item(Long id, String title, double price, String supplierId, int inventory) {
         this.id = id;
