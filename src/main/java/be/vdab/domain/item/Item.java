@@ -2,8 +2,9 @@ package be.vdab.domain.item;
 
 import javax.persistence.*;
 
+@MappedSuperclass
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "article_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item {
 
     @Id
