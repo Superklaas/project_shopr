@@ -11,7 +11,9 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item,Integer> {
 
-    @Query("select i from Book ")
-    List<Item> getAllItems();
+    @Query("select i from Item i order by i.item_type, i.title, i.price asc")
+    List<Book> getAllItems();
+
+    Item getItemByTitle(String title);
 
 }

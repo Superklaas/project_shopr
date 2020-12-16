@@ -17,9 +17,9 @@ public interface FictionRepository extends JpaRepository<Fiction,Long> {
     @Query("select b from Book b where b.book_type = 'FICTION' order by b.title, b.author, b.price asc")
     List<Book> getAllFictions();
 
-    Fiction getFictionById();
+    Fiction getFictionById(long id);
 
-    Fiction getFictionByTitle();
+    Fiction getFictionByTitle(String title);
 
     default void updateFiction(Fiction fiction) {
         save(fiction);

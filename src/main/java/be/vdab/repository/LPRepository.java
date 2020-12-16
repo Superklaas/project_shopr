@@ -16,9 +16,9 @@ public interface LPRepository extends JpaRepository<LP,Long> {
     @Query("select l from LP l order by l.title, l.artist, l.price asc")
     List<Book> getAllLPs();
 
-    LP getLPById();
+    LP getLPById(long id);
 
-    LP getLPByTitle();
+    LP getLPByTitle(String title);
 
     default void updateLP(LP lp) {
         save(lp);

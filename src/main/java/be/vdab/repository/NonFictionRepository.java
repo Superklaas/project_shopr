@@ -14,12 +14,12 @@ public interface NonFictionRepository extends JpaRepository<NonFiction, Long> {
         save(nonFiction);
     }
 
-    @Query("select b from NonFiction b order by b.title, b.author, b.price asc")
+    @Query("select b from Book b where b.book_type = 'NON_FICTION' order by b.title, b.author, b.price asc")
     List<Book> getAllFictions();
 
-    NonFiction getNonFictionById();
+    NonFiction getNonFictionById(long id);
 
-    NonFiction getNonFictionByTitle();
+    NonFiction getNonFictionByTitle(String title);
 
     default void updateNonFiction(NonFiction nonFiction) {
         save(nonFiction);

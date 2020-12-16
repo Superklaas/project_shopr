@@ -13,12 +13,12 @@ public interface GameRepository extends JpaRepository<Game,Long> {
         save(game);
     }
 
-    @Query("select b from game b order by b.title, b.author, b.price asc")
+    @Query("select g from Game g order by g.title, g.publisher, g.price asc")
     List<Book> getAllGames();
 
-    Game getGameById();
+    Game getGameById(long id);
 
-    Game getGameByTitle();
+    Game getGameByTitle(String title);
 
     default void updateGame(Game game) {
         save(game);
