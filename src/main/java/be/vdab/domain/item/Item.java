@@ -1,7 +1,7 @@
 package be.vdab.domain.item;
 
-import be.vdab.domain.Order;
-import be.vdab.domain.Review;
+//import be.vdab.domain.Order;
+//import be.vdab.domain.Review;
 
 import javax.persistence.*;
 
@@ -19,15 +19,15 @@ public abstract class Item {
     private int inventory;
     private String article_type;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH})
-    @JoinColumn(name="ordered_item_id")
-    private Order orderedItem;
-
-    @OneToOne
-    private Review review;
+//    @ManyToOne(cascade = {CascadeType.DETACH,
+//            CascadeType.MERGE,
+//            CascadeType.PERSIST,
+//            CascadeType.REFRESH})
+//    @JoinColumn(name="ordered_item_id")
+//    private Order orderedItem;
+//
+//    @OneToOne
+//    private Review review;
 
 
     public Item(Long id, String title, double price, String supplierId, int inventory) {
