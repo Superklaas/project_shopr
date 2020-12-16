@@ -10,9 +10,11 @@ import java.util.Objects;
 public class NonFiction extends Book {
 
     public NonFiction() { }
-    public NonFiction(Long id, String title, double price, String supplierId, String author,
-                      String isbn, int pages, Subject subject) {
-        super(id, title, price, supplierId, author, isbn, pages);
+
+    public NonFiction(Long id, String title, double price, String supplierId,
+                      int inventory, String author, String isbn,
+                      int pages, Subject subject) {
+        super(id, title, price, supplierId, inventory, author, isbn, pages);
         this.subject = subject;
     }
 

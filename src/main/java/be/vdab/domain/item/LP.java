@@ -1,19 +1,28 @@
 package be.vdab.domain.item;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("LP")
 public class LP extends Item {
 
+    @UniqueElements
     private String artist;
+    //hides the title of the superclass item
+    @UniqueElements
+    private String title;
     private Genre genre;
 
     public LP() { }
 
-    public LP(Long id, String title, double price, String supplierId, String artist, Genre genre) {
-        super(id, title, price, supplierId);
+    public LP(Long id, String title, double price, String supplierId, int inventory,
+              String artist, String title1, Genre genre) {
+        super(id, title, price, supplierId, inventory);
         this.artist = artist;
+        this.title = title1;
         this.genre = genre;
     }
 

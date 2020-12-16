@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("GAME")
 public class Game extends Item {
 
     private String publisher;
@@ -12,9 +13,9 @@ public class Game extends Item {
 
     public Game() { }
 
-    public Game(Long id, String title, double price, String supplierId,
+    public Game(Long id, String title, double price, String supplierId, int inventory,
                 String publisher, int minimumAge, Genre genre) {
-        super(id, title, price, supplierId);
+        super(id, title, price, supplierId, inventory);
         this.publisher = publisher;
         this.minimumAge = minimumAge;
         this.genre = genre;
