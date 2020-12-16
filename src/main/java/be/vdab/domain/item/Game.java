@@ -13,7 +13,8 @@ public class Game extends Item {
 
     public Game() { }
 
-    public Game(Long id, String title, double price, String supplierId, String publisher, int minimumAge, Genre genre) {
+    public Game(Long id, String title, double price, String supplierId,
+                String publisher, int minimumAge, Genre genre) {
         super(id, title, price, supplierId);
         this.publisher = publisher;
         this.minimumAge = minimumAge;

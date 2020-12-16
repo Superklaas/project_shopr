@@ -13,9 +13,6 @@ public interface ItemRepository extends JpaRepository<Item,Integer> {
         save(item);
     }
 
-    @Query("select i from Item i order by i.title, i.price asc")
-    List<Item> getAllItems();
-
     @Query("select b from Book b order by b.title, b.author, b.price asc")
     List<Book> getAllBooks();
 
