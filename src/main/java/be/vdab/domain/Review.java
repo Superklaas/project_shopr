@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 public class Review {
@@ -58,34 +59,34 @@ public class Review {
         this.webUser = webUser;
     }
 
-//    public Item getItem() {
-//        return item;
-//    }
-//
-//    public void setItem(Item item) {
-//        this.item = item;
-//    }
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public Long getId() {
         return id;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Review review = (Review) o;
-//        return score == review.score &&
-//                Objects.equals(id, review.id) &&
-//                Objects.equals(description, review.description) &&
-//                Objects.equals(user, review.user) &&
-//                Objects.equals(item, review.item);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, score, description, user, item);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return score == review.score &&
+                Objects.equals(id, review.id) &&
+                Objects.equals(description, review.description) &&
+                Objects.equals(webUser, review.webUser) &&
+                Objects.equals(item, review.item);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, score, description, webUser, item);
+    }
 
     public void setId(Long id) {
         this.id = id;
