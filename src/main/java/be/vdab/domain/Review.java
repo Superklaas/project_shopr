@@ -1,5 +1,7 @@
 package be.vdab.domain;
 
+import be.vdab.domain.item.Item;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,9 +28,9 @@ public class Review {
     @JoinColumn(name="webuser_id")
     private WebUser webUser;
 
-//    @OneToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinColumn(name="item_id")
-//    private Item item;
+    @OneToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name="item_id")
+    private Item item;
 
     public Review() { }
 
