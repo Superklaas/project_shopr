@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Order {
+public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +21,11 @@ public class Order {
             fetch = FetchType.LAZY)
     private List<Item> itemList;
 
-    @OneToOne(mappedBy = "order",
+    @OneToOne(mappedBy = "itemOrder",
             cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    private User user;
+    private WebUser webUser;
 
-    public Order() { }
+    public ItemOrder() { }
 
     public LocalDate getDate() {
         return date;
@@ -43,12 +43,12 @@ public class Order {
         this.itemList = itemList;
     }
 
-    public User getUser() {
-        return user;
+    public WebUser getUser() {
+        return webUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(WebUser webUser) {
+        this.webUser = webUser;
     }
 
     public Long getId() {
@@ -59,15 +59,19 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return Objects.equals(id, order.id) &&
-                Objects.equals(date, order.date) &&
-                Objects.equals(itemList, order.itemList) &&
-                Objects.equals(user, order.user);
+        ItemOrder itemOrder = (ItemOrder) o;
+        return Objects.equals(id, itemOrder.id) &&
+                Objects.equals(date, itemOrder.date) &&
+                Objects.equals(itemList, itemOrder.itemList) &&
+                Objects.equals(webUser, itemOrder.webUser);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, itemList, user);
+        return Objects.hash(id, date, itemList, webUser);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
