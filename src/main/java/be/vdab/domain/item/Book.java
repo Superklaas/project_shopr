@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "book_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Book extends Item {
 
     private String author;

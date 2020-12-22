@@ -88,3 +88,4 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
         return Objects.hash(id, age, name, itemOrder, reviews);
     }
 }
+

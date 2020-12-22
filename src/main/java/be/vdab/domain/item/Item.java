@@ -22,7 +22,6 @@ public abstract class Item {
     @Column(name = "article_type", insertable = false, updatable = false)
     private String articleType; // TRAINER: kan gebruikt worden om u discriminator value op te halen in java of JPQL
 
-
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST,
@@ -32,7 +31,6 @@ public abstract class Item {
 
     @OneToOne
     private Review review;
-
 
     public Item(Long id, String title, double price, String supplierId, int inventory) {
         this.id = id;
@@ -47,10 +45,6 @@ public abstract class Item {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -107,5 +101,6 @@ public abstract class Item {
 
     public void setReview(Review review) {
         this.review = review;
+
     }
 }
