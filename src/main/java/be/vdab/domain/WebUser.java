@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class User {
+public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,15 +20,15 @@ public class User {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "itemorder_id")
+    private ItemOrder itemOrder;
 
-    @OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "webUser",
     cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
     fetch = FetchType.LAZY)
     private List<Review> reviews;
 
-    public User() {}
+    public WebUser() {}
 
     public int getAge() {
         return age;
@@ -46,13 +46,6 @@ public class User {
         this.name = name;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -66,20 +59,32 @@ public class User {
         return id;
     }
 
+    public ItemOrder getItemOrder() {
+        return itemOrder;
+    }
+
+    public void setItemOrder(ItemOrder itemOrder) {
+        this.itemOrder = itemOrder;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age &&
-                Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(order, user.order) &&
-                Objects.equals(reviews, user.reviews);
+        WebUser webUser = (WebUser) o;
+        return age == webUser.age &&
+                Objects.equals(id, webUser.id) &&
+                Objects.equals(name, webUser.name) &&
+                Objects.equals(itemOrder, webUser.itemOrder) &&
+                Objects.equals(reviews, webUser.reviews);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, age, name, order, reviews);
+        return Objects.hash(id, age, name, itemOrder, reviews);
     }
 }
