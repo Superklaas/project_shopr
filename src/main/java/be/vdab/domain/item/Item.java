@@ -8,6 +8,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -30,7 +31,8 @@ public abstract class Item {
     @Size(max = 100)
     private String supplierId;
 
-    private Integer inventory;
+    @NotNull
+    private int inventory;
 
     @Column(name = "item_type", insertable = false, updatable = false)
     private String itemType;
@@ -39,10 +41,11 @@ public abstract class Item {
             fetch = FetchType.LAZY)
     private ItemOrder itemOrder;
 
-    @OneToOne(mappedBy = "item",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private Review review;
+    @OneToMany(mappedBy = "item",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Review> reviews;
+
+    public Item() {}
 
     public Item(Long id, String title, double price, String supplierId, int inventory) {
         this.id = id;
@@ -50,9 +53,6 @@ public abstract class Item {
         this.price = price;
         this.supplierId = supplierId;
         this.inventory = inventory;
-    }
-
-    public Item() {
     }
 
     public Long getId() {
@@ -87,7 +87,7 @@ public abstract class Item {
         return inventory;
     }
 
-    public void setInventory(Integer inventory) {
+    public void setInventory(int inventory) {
         this.inventory = inventory;
     }
 
@@ -95,8 +95,8 @@ public abstract class Item {
         return itemType;
     }
 
-    public void setItemType(String articleType) {
-        this.itemType = articleType;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
     public ItemOrder getItemOrder() {
@@ -107,12 +107,12 @@ public abstract class Item {
         this.itemOrder = itemOrder;
     }
 
-    public Review getReview() {
-        return review;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
-
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
+
 }

@@ -20,12 +20,13 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
             cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Item> items;
 
-    @OneToOne(mappedBy = "itemOrder",
-            cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+    @ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     private WebUser webUser;
 
-    public ItemOrder() { }
+    public Long getId() {
+        return id;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -43,16 +44,12 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
         this.items = items;
     }
 
-    public WebUser getUser() {
+    public WebUser getWebUser() {
         return webUser;
     }
 
-    public void setUser(WebUser webUser) {
+    public void setWebUser(WebUser webUser) {
         this.webUser = webUser;
-    }
-
-    public Long getId() {
-        return id;
     }
 
 }

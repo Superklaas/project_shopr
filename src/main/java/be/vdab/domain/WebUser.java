@@ -13,29 +13,23 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min=18,max=90)
-    private int age;
-
     @Pattern(regexp = "^(([a-zA-Z]){1})((([a-zA-Z])|([-])){0,15})(([a-zA-Z]){1})$",
             message = "your first name cannot contain a number or a special character")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private ItemOrder itemOrder;
+    @Size(min=18,max=90)
+    private int age;
+
+    @OneToMany(mappedBy = "webUser",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<ItemOrder> itemOrders;
 
     @OneToMany(mappedBy = "webUser",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Review> reviews;
 
-    public WebUser() {}
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -46,6 +40,21 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public List<ItemOrder> getItemOrders() {
+        return itemOrders;
+    }
+
+    public void setItemOrders(List<ItemOrder> itemOrders) {
+        this.itemOrders = itemOrders;
+    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -53,39 +62,6 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public ItemOrder getItemOrder() {
-        return itemOrder;
-    }
-
-    public void setItemOrder(ItemOrder itemOrder) {
-        this.itemOrder = itemOrder;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WebUser webUser = (WebUser) o;
-        return age == webUser.age &&
-                Objects.equals(id, webUser.id) &&
-                Objects.equals(name, webUser.name) &&
-                Objects.equals(itemOrder, webUser.itemOrder) &&
-                Objects.equals(reviews, webUser.reviews);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, age, name, itemOrder, reviews);
     }
 }
 

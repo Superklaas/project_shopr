@@ -27,11 +27,13 @@ public class Review {
             fetch = FetchType.LAZY)
     private WebUser webUser;
 
-    @OneToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+    @ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     private Item item;
 
-    public Review() { }
+    public Long getId() {
+        return id;
+    }
 
     public int getScore() {
         return score;
@@ -65,29 +67,5 @@ public class Review {
         this.item = item;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Review review = (Review) o;
-        return score == review.score &&
-                Objects.equals(id, review.id) &&
-                Objects.equals(description, review.description) &&
-                Objects.equals(webUser, review.webUser) &&
-                Objects.equals(item, review.item);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, score, description, webUser, item);
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
 
