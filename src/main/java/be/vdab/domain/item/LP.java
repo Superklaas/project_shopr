@@ -3,26 +3,26 @@ package be.vdab.domain.item;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
+//@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"artist", "title"})})
 @DiscriminatorValue("LP")
 public class LP extends Item {
 
-    @UniqueElements
+    @Size(max = 100)
     private String artist;
-    //hides the title of the superclass item
-    @UniqueElements
-    private String title;
+
+    @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
     public LP() { }
 
     public LP(Long id, String title, double price, String supplierId, int inventory,
-              String artist, String title1, Genre genre) {
+              String artist, Genre genre) {
         super(id, title, price, supplierId, inventory);
         this.artist = artist;
-        this.title = title1;
         this.genre = genre;
     }
 
@@ -36,7 +36,6 @@ public class LP extends Item {
         return genre;
     }
 
-    @Enumerated(EnumType.ORDINAL)
     public void setGenre(Genre genre) { this.genre = genre;}
 
     public enum Genre {

@@ -1,14 +1,19 @@
 package be.vdab.domain.item;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 @DiscriminatorValue("GAME")
 public class Game extends Item {
 
+    @Size(max = 100)
     private String publisher;
+
     private int minimumAge;
+
+    @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
     public Game() { }
@@ -41,7 +46,6 @@ public class Game extends Item {
         return genre;
     }
 
-    @Enumerated(EnumType.ORDINAL)
     public void setGenre(Genre genre) {
         this.genre = genre;
     }

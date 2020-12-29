@@ -8,24 +8,24 @@ import java.util.Objects;
 
 @Entity
 public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 18, max=90)
+    @Size(min=18,max=90)
     private int age;
 
-    @Pattern(regexp = "^(([a-zA-Z]){1})(([a-zA-Z])|([-])){0,15}(([a-zA-Z]){1})$",
+    @Pattern(regexp = "^(([a-zA-Z]){1})((([a-zA-Z])|([-])){0,15})(([a-zA-Z]){1})$",
             message = "your first name cannot contain a number or a special character")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "itemorder_id")
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private ItemOrder itemOrder;
 
     @OneToMany(mappedBy = "webUser",
-    cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-    fetch = FetchType.LAZY)
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Review> reviews;
 
     public WebUser() {}

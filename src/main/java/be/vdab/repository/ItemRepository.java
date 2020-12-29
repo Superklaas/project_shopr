@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item,Integer> {
 
-    @Query("select i from Item i order by i.articleType, i.title, i.price asc")
+    @Query("select i from Item i order by i.itemType, i.title, i.price asc")
     List<Item> getAllItems();
 
     @Query("select b from Book b order by b.title, b.author, b.price asc")

@@ -11,9 +11,10 @@ import java.util.Objects;
 @DiscriminatorValue("FICTION")
 public class Fiction extends Book {
 
+    @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
-    @Size(min = 0, max = 255)
+    @Size(max = 255)
     private String summary;
 
     public Fiction () { }
@@ -30,7 +31,6 @@ public class Fiction extends Book {
         return genre;
     }
 
-    @Enumerated(EnumType.ORDINAL)
     public void setGenre(Genre genre) { this.genre = genre;}
 
     public String getSummary() {

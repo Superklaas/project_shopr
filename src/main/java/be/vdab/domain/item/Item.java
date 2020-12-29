@@ -4,32 +4,44 @@ import be.vdab.domain.ItemOrder;
 import be.vdab.domain.Review;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "article_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "item_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Size(max = 100)
     private String title;
+
+    @NotNull
+    @Digits(integer = 5, fraction = 2)
     private double price;
+
+    @NotNull
+    @Size(max = 100)
     private String supplierId;
+
     private Integer inventory;
 
-    @Column(name = "article_type", insertable = false, updatable = false)
-    private String articleType; // TRAINER: kan gebruikt worden om u discriminator value op te halen in java of JPQL
+    @Column(name = "item_type", insertable = false, updatable = false)
+    private String itemType;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH})
-    @JoinColumn(name="ordered_item_id")
-    private ItemOrder orderedItem;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
+    private ItemOrder itemOrder;
 
-    @OneToOne
+    @OneToOne(mappedBy = "item",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private Review review;
 
     public Item(Long id, String title, double price, String supplierId, int inventory) {
@@ -79,20 +91,20 @@ public abstract class Item {
         this.inventory = inventory;
     }
 
-    public String getArticleType() {
-        return articleType;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setArticleType(String articleType) {
-        this.articleType = articleType;
+    public void setItemType(String articleType) {
+        this.itemType = articleType;
     }
 
-    public ItemOrder getOrderedItem() {
-        return orderedItem;
+    public ItemOrder getItemOrder() {
+        return itemOrder;
     }
 
-    public void setOrderedItem(ItemOrder orderedItem) {
-        this.orderedItem = orderedItem;
+    public void setItemOrder(ItemOrder itemOrder) {
+        this.itemOrder = itemOrder;
     }
 
     public Review getReview() {

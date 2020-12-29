@@ -14,16 +14,15 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //heeft nog validatie nodig
     private LocalDate date;
 
-    @OneToMany(mappedBy = "orderedItem",
-            cascade = { CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH},
-            fetch = FetchType.LAZY)
-    private List<Item> itemList;
+    @OneToMany(mappedBy = "itemOrder",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Item> items;
 
     @OneToOne(mappedBy = "itemOrder",
-            cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+            cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+            fetch = FetchType.LAZY)
     private WebUser webUser;
 
     public ItemOrder() { }
@@ -36,12 +35,12 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
         this.date = date;
     }
 
-    public List<Item> getItemList() {
-        return itemList;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public WebUser getUser() {
@@ -56,23 +55,4 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
         return id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ItemOrder itemOrder = (ItemOrder) o;
-        return Objects.equals(id, itemOrder.id) &&
-                Objects.equals(date, itemOrder.date) &&
-                Objects.equals(itemList, itemOrder.itemList) &&
-                Objects.equals(webUser, itemOrder.webUser);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, date, itemList, webUser);
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

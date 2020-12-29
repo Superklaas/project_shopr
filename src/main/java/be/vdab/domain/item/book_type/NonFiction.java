@@ -9,6 +9,9 @@ import java.util.Objects;
 @DiscriminatorValue("NON_FICTION")
 public class NonFiction extends Book {
 
+    @Enumerated(EnumType.ORDINAL)
+    private Subject subject;
+
     public NonFiction() { }
 
     public NonFiction(Long id, String title, double price, String supplierId,
@@ -18,9 +21,10 @@ public class NonFiction extends Book {
         this.subject = subject;
     }
 
-    private Subject subject;
+    public Subject getSubject() {
+        return subject;
+    }
 
-    @Enumerated(EnumType.ORDINAL)
     public void setSubject(Subject subject) { this.subject = subject;}
 
     public enum Subject {
