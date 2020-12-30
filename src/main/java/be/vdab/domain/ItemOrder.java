@@ -1,11 +1,8 @@
 package be.vdab.domain;
 
-import be.vdab.domain.item.Item;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
@@ -16,9 +13,9 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
 
     private LocalDate date;
 
-    @OneToMany(mappedBy = "itemOrder",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<Item> items;
+    @OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "item_order_id")
+    private List<ItemOrderUnit> itemOrderUnits;
 
     @ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
             fetch = FetchType.LAZY)
@@ -36,12 +33,12 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
         this.date = date;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<ItemOrderUnit> getItemOrderUnits() {
+        return itemOrderUnits;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setItemOrderUnits(List<ItemOrderUnit> itemOrderUnits) {
+        this.itemOrderUnits = itemOrderUnits;
     }
 
     public WebUser getWebUser() {

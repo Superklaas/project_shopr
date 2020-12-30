@@ -37,10 +37,6 @@ public abstract class Item {
     @Column(name = "item_type", insertable = false, updatable = false)
     private String itemType;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-            fetch = FetchType.LAZY)
-    private ItemOrder itemOrder;
-
     @OneToMany(mappedBy = "item",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Review> reviews;
@@ -97,14 +93,6 @@ public abstract class Item {
 
     public void setItemType(String itemType) {
         this.itemType = itemType;
-    }
-
-    public ItemOrder getItemOrder() {
-        return itemOrder;
-    }
-
-    public void setItemOrder(ItemOrder itemOrder) {
-        this.itemOrder = itemOrder;
     }
 
     public List<Review> getReviews() {
