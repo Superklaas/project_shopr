@@ -17,14 +17,12 @@ public class Fiction extends Book {
     @Size(max = 255)
     private String summary;
 
-    public Fiction () { }
+    public Fiction(String title, double price, String supplierId, int inventory, String isbn) {
+        super(title, price, supplierId, inventory, isbn);
+    }
 
-    public Fiction(Long id, String title, double price, String supplierId,
-                   int inventory, String author, String isbn, int pages,
-                   Genre genre, @Size(min = 0, max = 255) String summary) {
-        super(id, title, price, supplierId, inventory, author, isbn, pages);
-        this.genre = genre;
-        this.summary = summary;
+    public Fiction() {
+
     }
 
     public Genre getGenre() {
@@ -40,20 +38,7 @@ public class Fiction extends Book {
     public void setSummary(String summary) { this.summary = summary; }
 
     public enum Genre {
-        THRILLER, FANTASY, DETECTIVE, ROMANCE, SCIFI;
+        THRILLER, FANTASY, DETECTIVE, ROMANCE, SCIFI
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Fiction fiction = (Fiction) o;
-        return genre == fiction.genre &&
-                summary.equals(fiction.summary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(genre, summary);
-    }
 }

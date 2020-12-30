@@ -23,7 +23,10 @@ public class ItemOrderUnit {
         this.number = number;
         this.item = item;
     }
-    public ItemOrderUnit() {}
+
+    public ItemOrderUnit() {
+
+    }
 
     public long getId() {
         return id;

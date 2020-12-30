@@ -31,6 +31,17 @@ public class Review {
             fetch = FetchType.LAZY)
     private Item item;
 
+    public Review(int score, String description, WebUser webUser, Item item) {
+        this.score = score;
+        this.description = description;
+        this.webUser = webUser;
+        this.item = item;
+    }
+
+    public Review() {
+
+    }
+
     public Long getId() {
         return id;
     }

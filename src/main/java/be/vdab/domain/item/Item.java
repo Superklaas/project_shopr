@@ -41,14 +41,15 @@ public abstract class Item {
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Review> reviews;
 
-    public Item() {}
-
-    public Item(Long id, String title, double price, String supplierId, int inventory) {
-        this.id = id;
+    public Item(String title, double price, String supplierId, int inventory) {
         this.title = title;
         this.price = price;
         this.supplierId = supplierId;
         this.inventory = inventory;
+    }
+
+    public Item() {
+
     }
 
     public Long getId() {

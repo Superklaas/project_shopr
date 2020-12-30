@@ -12,13 +12,12 @@ public class NonFiction extends Book {
     @Enumerated(EnumType.ORDINAL)
     private Subject subject;
 
-    public NonFiction() { }
+    public NonFiction(String title, double price, String supplierId, int inventory, String isbn) {
+        super(title, price, supplierId, inventory, isbn);
+    }
 
-    public NonFiction(Long id, String title, double price, String supplierId,
-                      int inventory, String author, String isbn,
-                      int pages, Subject subject) {
-        super(id, title, price, supplierId, inventory, author, isbn, pages);
-        this.subject = subject;
+    public NonFiction() {
+
     }
 
     public Subject getSubject() {
@@ -28,19 +27,7 @@ public class NonFiction extends Book {
     public void setSubject(Subject subject) { this.subject = subject;}
 
     public enum Subject {
-        HISTORY, COOKBOOK, SCIENCE, SPORT;
+        HISTORY, COOKBOOK, SCIENCE, SPORT
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        NonFiction that = (NonFiction) o;
-        return subject == that.subject;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(subject);
-    }
 }

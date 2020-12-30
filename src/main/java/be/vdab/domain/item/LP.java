@@ -3,6 +3,7 @@ package be.vdab.domain.item;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -11,19 +12,20 @@ import java.util.Objects;
 @DiscriminatorValue("LP")
 public class LP extends Item {
 
+    @NotBlank
     @Size(max = 100)
     private String artist;
 
     @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
-    public LP() { }
-
-    public LP(Long id, String title, double price, String supplierId, int inventory,
-              String artist, Genre genre) {
-        super(id, title, price, supplierId, inventory);
+    public LP(String title, double price, String supplierId, int inventory, String artist) {
+        super(title, price, supplierId, inventory);
         this.artist = artist;
-        this.genre = genre;
+    }
+
+    public LP() {
+
     }
 
     public String getArtist() {
@@ -39,20 +41,7 @@ public class LP extends Item {
     public void setGenre(Genre genre) { this.genre = genre;}
 
     public enum Genre {
-        CLASSICAL, POP, ROCK, DANCE, RB, HIPHOP;
+        CLASSICAL, POP, ROCK, DANCE, RB, HIPHOP
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LP lp = (LP) o;
-        return artist.equals(lp.artist) &&
-                genre == lp.genre;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(artist, genre);
-    }
 }

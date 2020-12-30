@@ -1,6 +1,7 @@
 package be.vdab.domain.item;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ import java.util.Objects;
 @DiscriminatorValue("GAME")
 public class Game extends Item {
 
+    @NotBlank
     @Size(max = 100)
     private String publisher;
 
@@ -16,14 +18,13 @@ public class Game extends Item {
     @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
-    public Game() { }
-
-    public Game(Long id, String title, double price, String supplierId, int inventory,
-                String publisher, int minimumAge, Genre genre) {
-        super(id, title, price, supplierId, inventory);
+    public Game(String title, double price, String supplierId, int inventory, String publisher) {
+        super(title, price, supplierId, inventory);
         this.publisher = publisher;
-        this.minimumAge = minimumAge;
-        this.genre = genre;
+    }
+
+    public Game() {
+
     }
 
     public String getPublisher() {
@@ -51,21 +52,7 @@ public class Game extends Item {
     }
 
     public enum Genre {
-        MMORPG, RPG, FPS, RTS, RACE;
+        MMORPG, RPG, FPS, RTS, RACE
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return minimumAge == game.minimumAge &&
-                Objects.equals(publisher, game.publisher) &&
-                genre == game.genre;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(publisher, minimumAge, genre);
-    }
 }

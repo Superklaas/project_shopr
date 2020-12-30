@@ -1,6 +1,8 @@
 package be.vdab.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -13,10 +15,12 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Pattern(regexp = "^(([a-zA-Z]){1})((([a-zA-Z])|([-])){0,15})(([a-zA-Z]){1})$",
             message = "your first name cannot contain a number or a special character")
     private String name;
 
+    @NotNull
     @Size(min=18,max=90)
     private int age;
 
@@ -27,6 +31,15 @@ public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
     @OneToMany(mappedBy = "webUser",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Review> reviews;
+
+    public WebUser(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public WebUser() {
+
+    }
 
     public Long getId() {
         return id;

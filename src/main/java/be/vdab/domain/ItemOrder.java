@@ -1,6 +1,7 @@
 package be.vdab.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private LocalDate date;
 
     @OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
@@ -20,6 +22,16 @@ public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
     @ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     private WebUser webUser;
+
+    public ItemOrder(LocalDate date, List<ItemOrderUnit> itemOrderUnits, WebUser webUser) {
+        this.date = date;
+        this.itemOrderUnits = itemOrderUnits;
+        this.webUser = webUser;
+    }
+
+    public ItemOrder() {
+
+    }
 
     public Long getId() {
         return id;

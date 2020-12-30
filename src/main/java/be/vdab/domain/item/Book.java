@@ -22,17 +22,16 @@ public abstract class Book extends Item {
 
     private int pages;
 
+    @Column(name = "book_type", insertable = false, updatable = false)
     private String book_type;
 
-    public Book() {
+    public Book(String title, double price, String supplierId, int inventory, String isbn) {
+        super(title, price, supplierId, inventory);
+        this.isbn = isbn;
     }
 
-    public Book(Long id, String title, double price, String supplierId,
-                int inventory, String author, String isbn, int pages) {
-        super(id, title, price, supplierId, inventory);
-        this.author = author;
-        this.isbn = isbn;
-        this.pages = pages;
+    public Book() {
+
     }
 
     public String getAuthor() {
