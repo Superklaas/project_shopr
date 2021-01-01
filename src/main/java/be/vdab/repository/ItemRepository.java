@@ -32,8 +32,8 @@ public interface ItemRepository extends JpaRepository<Item,Long> {
     @Query("select b from Book b where b.id=?1")
     Book getBookById(int id);
 
-    @Query("select b from Book b where b.book_type=?1")
-    List<Book> getBookByBook_type(String bookType);
+    @Query("select b from Book b where b.bookType=?1")
+    List<Book> getBookByBookType(String bookType);
 
     @Query("select b from Book b where b.title=?1")
     List<Book> getBookByTitle(String title);
