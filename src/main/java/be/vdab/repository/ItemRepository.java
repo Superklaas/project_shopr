@@ -32,12 +32,28 @@ public interface ItemRepository extends JpaRepository<Item,Long> {
     @Query("select b from Book b where b.id=?1")
     Book getBookById(int id);
 
+    @Query("select b from Book b where b.book_type=?1")
+    List<Book> getBookByBook_type(String bookType);
 
+    @Query("select b from Book b where b.title=?1")
+    List<Book> getBookByTitle(String title);
+
+    @Query("select b from Book b where b.price=?1")
+    List<Book> getBookByPrice(double price);
 
     // FICTION
 
     @Query("select b from Fiction b order by b.title, b.author, b.price asc")
     List<Fiction> getAllFictions();
+
+    @Query("select b from Fiction b where b.id=?1")
+    Fiction getFictionById(int id);
+
+    @Query("select b from Fiction b where b.title=?1")
+    List<Fiction> getFictionByTitle(String title);
+
+    @Query("select b from Fiction b where b.price=?1")
+    List<Fiction> getFictionByPrice(double price);
 
     // NON FICTION
 
@@ -53,8 +69,5 @@ public interface ItemRepository extends JpaRepository<Item,Long> {
 
     @Query("select l from LP l order by l.title, l.artist, l.price asc")
     List<LP> getAllLPs();
-
-
-
 
 }
