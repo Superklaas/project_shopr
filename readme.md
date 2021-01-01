@@ -1,7 +1,7 @@
 DONE
-review domain classes 
-repositories with some basic methods
-unit tests for ItemRepository class
+- review domain classes 
+- repositories with some basic methods
+- unit tests for ItemRepository class
 
 ??
 - domain class LP: unieke combinatie title & artist (idem bij Game)
