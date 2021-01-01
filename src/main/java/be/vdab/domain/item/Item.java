@@ -19,7 +19,7 @@ public abstract class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(max = 100)
     private String title;
 
@@ -27,7 +27,7 @@ public abstract class Item {
     @Digits(integer = 5, fraction = 2)
     private double price;
 
-    @NotNull
+    @NotBlank
     @Size(max = 100)
     private String supplierId;
 

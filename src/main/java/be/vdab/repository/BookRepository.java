@@ -11,6 +11,10 @@ public interface BookRepository extends JpaRepository<Book,Long> {
     @Query("select b from Book b order by b.title, b.author, b.price asc")
     List<Book> getAllBooks();
 
-    Book getBookByTitle(String title);
+    List<Book> getBookByBook_type(String bookType);
+
+    List<Book> getBookByTitle(String title);
+
+    List<Book> getBookByPrice(double price);
 
 }

@@ -10,24 +10,11 @@ import java.util.List;
 
 public interface NonFictionRepository extends JpaRepository<NonFiction, Long> {
 
-    default void createNonFiction(NonFiction nonFiction) {
-        save(nonFiction);
-    }
-
     @Query("select b from Book b where b.book_type = 'NON_FICTION' order by b.title, b.author, b.price asc")
-    List<Book> getAllFictions();
+    List<NonFiction> getAllNonFictions();
 
-    NonFiction getNonFictionById(long id);
+    List<NonFiction> getNonFictionByTitle(String title);
 
-    NonFiction getNonFictionByTitle(String title);
-
-    default void updateNonFiction(NonFiction nonFiction) {
-        save(nonFiction);
-    }
-
-    default void deleteNonFiction(NonFiction nonFiction) {
-        delete(nonFiction);
-    }
-
+    List<NonFiction> getNonFictionByPrice(double price);
 
 }

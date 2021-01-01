@@ -9,23 +9,11 @@ import java.util.List;
 
 public interface LPRepository extends JpaRepository<LP,Long> {
 
-    default void createLP(LP lp) {
-        save(lp);
-    }
-
     @Query("select l from LP l order by l.title, l.artist, l.price asc")
     List<Book> getAllLPs();
 
-    LP getLPById(long id);
+    List<LP> getLPByTitle(String title);
 
-    LP getLPByTitle(String title);
-
-    default void updateLP(LP lp) {
-        save(lp);
-    }
-
-    default void deleteLP(LP lp) {
-        delete(lp);
-    }
+    List<LP> getLPByPrice(double price);
 
 }

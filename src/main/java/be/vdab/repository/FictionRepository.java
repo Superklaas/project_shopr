@@ -10,23 +10,11 @@ import java.util.List;
 
 public interface FictionRepository extends JpaRepository<Fiction,Long> {
 
-    default void createFiction(Fiction fiction) {
-        save(fiction);
-    }
-
     @Query("select b from Book b where b.book_type = 'FICTION' order by b.title, b.author, b.price asc")
-    List<Book> getAllFictions();
+    List<Fiction> getAllFictions();
 
-    Fiction getFictionById(long id);
+    List<Fiction> getFictionByTitle(String title);
 
-    Fiction getFictionByTitle(String title);
-
-    default void updateFiction(Fiction fiction) {
-        save(fiction);
-    }
-
-    default void deleteFiction(Fiction fiction) {
-        delete(fiction);
-    }
+    List<Fiction> getFictionByPrice(double price);
 
 }

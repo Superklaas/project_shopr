@@ -9,23 +9,11 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game,Long> {
 
-    default void createGame(Game game) {
-        save(game);
-    }
-
     @Query("select g from Game g order by g.title, g.publisher, g.price asc")
-    List<Book> getAllGames();
+    List<Game> getAllGames();
 
-    Game getGameById(long id);
+    List<Game> getGameByTitle(String title);
 
-    Game getGameByTitle(String title);
-
-    default void updateGame(Game game) {
-        save(game);
-    }
-
-    default void deleteGame(Game game) {
-        delete(game);
-    }
+    List<Game> getGameByPrice(double price);
 
 }
