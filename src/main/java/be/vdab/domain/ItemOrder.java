@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class ItemOrder { //TRAINER: Order is een reserved keyword in sql
+public class ItemOrder { //TRAINER TODO: Order is een reserved keyword in sql
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

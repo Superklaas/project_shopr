@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface NonFictionRepository extends JpaRepository<NonFiction, Long> {
 
-    @Query("select b from NonFiction b order by b.title, b.author, b.price asc")
+    @Query("select b from NonFiction b order by b.bookTitle, b.author, b.price asc")
     List<NonFiction> getAllNonFictions();
 
     List<NonFiction> getNonFictionByTitle(String title);

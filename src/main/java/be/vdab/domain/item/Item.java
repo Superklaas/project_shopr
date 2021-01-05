@@ -1,6 +1,5 @@
 package be.vdab.domain.item;
 
-import be.vdab.domain.ItemOrder;
 import be.vdab.domain.Review;
 
 import javax.persistence.*;
