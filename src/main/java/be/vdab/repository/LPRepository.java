@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface LPRepository extends JpaRepository<LP,Long> {
 
-    @Query("select l from LP l order by l.title, l.artist, l.price asc")
+    @Query("select l from LP l order by l.lpTitle, l.artist, l.price asc")
     List<Book> getAllLPs();
 
     List<LP> getLPByTitle(String title);

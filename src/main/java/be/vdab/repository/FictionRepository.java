@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface FictionRepository extends JpaRepository<Fiction,Long> {
 
-    @Query("select b from Fiction b order by b.title, b.author, b.price asc")
+    @Query("select b from Fiction b order by b.bookTitle, b.author, b.price asc")
     List<Fiction> getAllFictions();
 
     List<Fiction> getFictionByTitle(String title);

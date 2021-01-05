@@ -1,5 +1,7 @@
 package be.vdab.domain;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,19 +11,21 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class WebUser { //TRAINER: user is ook een reserved keyword in MySql
+public class WebUser { //TRAINER TODO: user is ook een reserved keyword in MySql
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @Pattern(regexp = "^(([a-zA-Z]){1})((([a-zA-Z])|([-])){0,15})(([a-zA-Z]){1})$",
+    //TRAINER TODO: als je regex gebruikt moet het matchen. Dus alles waar een numer of special character in zit match niet en geeft de error message weer
+    //TRAINER TODO: zie test
+    @Pattern(regexp = "[a-z\\sA-Z]*",
             message = "your first name cannot contain a number or a special character")
     private String name;
 
     @NotNull
-    @Size(min=18,max=90)
+    @Range(min=18,max=90)
     private int age;
 
     @OneToMany(mappedBy = "webUser",

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game,Long> {
 
-    @Query("select g from Game g order by g.title, g.publisher, g.price asc")
+    @Query("select g from Game g order by g.gameTitle, g.publisher, g.price asc")
     List<Game> getAllGames();
 
     List<Game> getGameByTitle(String title);

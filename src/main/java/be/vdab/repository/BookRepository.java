@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book,Long> {
 
-    @Query("select b from Book b order by b.title, b.author, b.price asc")
+    @Query("select b from Book b order by b.bookTitle, b.author, b.price asc")
     List<Book> getAllBooks();
 
     List<Book> getBookByBookType(String bookType);

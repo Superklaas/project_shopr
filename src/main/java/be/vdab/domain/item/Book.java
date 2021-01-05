@@ -2,11 +2,14 @@ package be.vdab.domain.item;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//TRAINER TODO: als je uniqueConstraints wil gebruiken op title en ook de title column hebben in Book table kan je AttributeOverride gebruiken om deze van de parent te overiden
+@AttributeOverride(column = @Column(name = "title", length = 100, nullable = false), name = "bookTitle")
 @DiscriminatorColumn(name = "book_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Book extends Item {
 
@@ -22,16 +25,26 @@ public abstract class Book extends Item {
 
     private int pages;
 
+    @Size(max = 100)
+    @NotNull(message = "Title of book must not be null")
+    private String bookTitle;
+
     @Column(name = "book_type", insertable = false, updatable = false)
     private String bookType;
 
-    public Book(String title, double price, String supplierId, int inventory, String isbn) {
-        super(title, price, supplierId, inventory);
+    public Book(String bookTitle, double price, String supplierId, int inventory, String isbn) {
+        super(bookTitle, price, supplierId, inventory);
         this.isbn = isbn;
     }
 
-    public Book() {
+    public Book() {}
 
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String title) {
+        this.bookTitle = title;
     }
 
     public String getAuthor() {
