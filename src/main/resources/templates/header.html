@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(vartitle)">
+    <title th:replace="${vartitle}">The awesome application</title>
+    <link rel="stylesheet" th:href="@{/main.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+</head>
+<body>
+<nav th:fragment="navbar">
+    <div>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{/}">Home</a>
+            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#" th:href="@{/readAllAnimals}">Show animals</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#" th:href="@{/addAnimal}">Add animal</a>-->
+<!--            </li>-->
+        </ul>
+    </div>
+    <hr>
+</nav>
+</body>
+</html>

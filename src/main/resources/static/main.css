@@ -1,0 +1,17 @@
+.items th, td {
+    text-align: center;
+    width: 200px;
+}
+
+.name_item {
+    font-size: 18px;
+}
+
+.image_item img {
+    width: 60%;
+    height: 80%;
+}
+
+.image_item td {
+    height: 150px;
+}

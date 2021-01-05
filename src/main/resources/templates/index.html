@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="header :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>Webshop Klaas</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    <div th:insert="header :: navbar"></div>
+    <h1>Welcome to my webshop</h1>
+    <div class="items">
+        <table>
+            <tr class="name_item">
+                <th>Books</th>
+                <th>Games</th>
+                <th>LPs</th>
+            </tr>
+            <tr class="image_item">
+                <td><img src="images/book.jpg" alt="books"/></td>
+                <td><img src="images/game.jpg" alt="game"/></td>
+                <td><img src="images/vinyl.jpg" alt="lp"/></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
