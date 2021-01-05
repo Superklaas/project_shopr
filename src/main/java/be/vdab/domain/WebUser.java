@@ -11,15 +11,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class WebUser { //TRAINER TODO: user is ook een reserved keyword in MySql
+public class WebUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    //TRAINER TODO: als je regex gebruikt moet het matchen. Dus alles waar een numer of special character in zit match niet en geeft de error message weer
-    //TRAINER TODO: zie test
     @Pattern(regexp = "[a-z\\sA-Z]*",
             message = "your first name cannot contain a number or a special character")
     private String name;

@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-//TRAINER TODO: als je uniqueConstraints wil gebruiken op title en ook de title column hebben in LP table kan je AttributeOverride gebruiken om deze van de parent te overiden
 @AttributeOverride(column = @Column(name = "title", length = 100, nullable = false), name = "lpTitle")
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"artist", "title"})})
 @DiscriminatorValue("LP")
@@ -13,13 +12,14 @@ public class LP extends Item {
 
     @NotBlank
     @Size(max = 100)
+    private String lpTitle;
+
+    @NotBlank
+    @Size(max = 100)
     private String artist;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Genre genre;
-
-    @Size(max = 100)
-    private String lpTitle;  //TRAINER TODO: gebruik hier best een andere naam voor title (omdat title ook in Item wordt gebruikt), anders krijg je fout meldingen
 
     public LP(String lpTitle, double price, String supplierId, int inventory, String artist) {
         super(lpTitle, price, supplierId, inventory);
@@ -28,7 +28,6 @@ public class LP extends Item {
 
     public LP() {
     }
-
 
     public String getLpTitle() {
         return lpTitle;

@@ -11,7 +11,7 @@ import java.util.Objects;
 @DiscriminatorValue("FICTION")
 public class Fiction extends Book {
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Genre genre;
 
     @Size(max = 255)

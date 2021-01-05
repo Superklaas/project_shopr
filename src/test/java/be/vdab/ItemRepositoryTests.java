@@ -13,6 +13,7 @@ import javax.persistence.NonUniqueResultException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,21 +63,19 @@ public class ItemRepositoryTests {
     @Test
     void getAllItems_ResultListOrderedByTitle() {
         List<Item> items = itemRepository.getAllItems();
-        assertEquals("A promised land", items.get(3).getTitle());
-        assertEquals("B promised land", items.get(4).getTitle());
-        //TRAINER TODO: findFirst returns een optional wat ook een object is maar niet het object dat je zoekt.
-        //TRAINER TODO: Enkel nog .get()  achter plaatsen dan krijg je een Item object terug
-        //TRAINER TODO: en .equals gebruiken voor strings te vergelijken!
-        int indexA = items.indexOf(items.stream().filter(item -> item.getTitle().equals("A promised land")).findFirst().get());
-        int indexB = items.indexOf(items.stream().filter(item -> item.getTitle().equals("B promised land")).findFirst().get());
-        assertTrue(indexA < indexB);
+        Item itemA = items.stream().filter(item -> item.getTitle().equals("A promised land")).findFirst().get();
+        Item itemB = items.stream().filter(item -> item.getTitle().equals("B promised land")).findFirst().get();
+        assertTrue(items.indexOf(itemA) < items.indexOf(itemB));
     }
 
     @Test
     void getAllItems_ResultListOrderedByPrice() {
         List<Item> items = itemRepository.getAllItems();
-        assertEquals(45, items.get(4).getPrice());
-        assertEquals(75, items.get(5).getPrice());
+        List<Item> itemsSameTitle =
+                items.stream().filter(item -> item.getTitle().equals("B promised land")).collect(Collectors.toList());
+        Item item45 = itemsSameTitle.stream().filter(item -> item.getPrice() == 45).findFirst().get();
+        Item item75 = itemsSameTitle.stream().filter(item -> item.getPrice() == 75).findFirst().get();
+        assertTrue(items.indexOf(item45) < items.indexOf(item75));
     }
 
 }

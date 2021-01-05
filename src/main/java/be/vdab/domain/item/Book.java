@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//TRAINER TODO: als je uniqueConstraints wil gebruiken op title en ook de title column hebben in Book table kan je AttributeOverride gebruiken om deze van de parent te overiden
 @AttributeOverride(column = @Column(name = "title", length = 100, nullable = false), name = "bookTitle")
 @DiscriminatorColumn(name = "book_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Book extends Item {
@@ -26,7 +25,7 @@ public abstract class Book extends Item {
     private int pages;
 
     @Size(max = 100)
-    @NotNull(message = "Title of book must not be null")
+    @NotBlank(message = "Title of book must not be null")
     private String bookTitle;
 
     @Column(name = "book_type", insertable = false, updatable = false)

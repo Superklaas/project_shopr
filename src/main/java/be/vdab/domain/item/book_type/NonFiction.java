@@ -9,16 +9,14 @@ import java.util.Objects;
 @DiscriminatorValue("NON_FICTION")
 public class NonFiction extends Book {
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Subject subject;
 
     public NonFiction(String title, double price, String supplierId, int inventory, String isbn) {
         super(title, price, supplierId, inventory, isbn);
     }
 
-    public NonFiction() {
-
-    }
+    public NonFiction() {}
 
     public Subject getSubject() {
         return subject;

@@ -10,13 +10,13 @@ INSERT INTO book (title, author, book_type, isbn, pages, id) VALUES ('Pietje Puk
 INSERT INTO book (title, author, book_type, isbn, pages, id) VALUES ('B promised land', 'Barack Obama', 'NON_FICTION', '978-1-56619-909-5', 500, 5);
 INSERT INTO book (title, author, book_type, isbn, pages, id) VALUES ('B promised land', 'Barack Obama', 'NON_FICTION', '978-1-56619-909-6', 500, 6);
 
-INSERT INTO fiction (genre, summary, id) VALUES (1, 'Pietje Puk heeft corona en blijft thuis.', 2);
+INSERT INTO fiction (genre, summary, id) VALUES ('THRILLER', 'Pietje Puk heeft corona en blijft thuis.', 2);
 
-INSERT INTO non_fiction (subject, id) VALUES (1, 1);
-INSERT INTO non_fiction (subject, id) VALUES (1, 5);
-INSERT INTO non_fiction (subject, id) VALUES (1, 6);
+INSERT INTO non_fiction (subject, id) VALUES ('HISTORY', 1);
+INSERT INTO non_fiction (subject, id) VALUES ('HISTORY', 5);
+INSERT INTO non_fiction (subject, id) VALUES ('HISTORY', 6);
 
-INSERT INTO game (title, genre, minimum_age, publisher, id) VALUES ('Bravery & Slavery', 1, 18, 'EA', 3);
+INSERT INTO game (title, genre, minimum_age, publisher, id) VALUES ('Bravery & Slavery', 'RPG', 18, 'EA', 3);
 
-INSERT INTO lp (title, artist, genre, id) VALUES ('Miles Ahead', 'Miles Davis', 1, 4);
+INSERT INTO lp (title, artist, genre, id) VALUES ('Miles Ahead', 'Miles Davis', 'HIPHOP', 4);
 
