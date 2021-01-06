@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WebUserTest {
 
-    private WebUser webUser = new WebUser();
+    private WebUser webUser;
     private Validator validator;
 
     @BeforeEach
     public void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-        webUser.setAge(18);
+        webUser = new WebUser("Klaas",27);
     }
 
     @Test
@@ -43,4 +43,59 @@ class WebUserTest {
                     violations.iterator().next().getMessage());
         });
     }
+
+    @Test
+    void setName_BlankName() {
+        webUser.setName(" ");
+        Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
+        Assertions.assertAll(() -> {
+            assertFalse(violations.isEmpty());
+            assertEquals("must not be blank",
+                    violations.iterator().next().getMessage());
+        });
+    }
+
+    @Test
+    void setAge_CorrectAge() {
+        webUser.setAge(35);
+        assertEquals(35, webUser.getAge());
+        Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
+        assertTrue(violations.isEmpty());
+    }
+
+    @Test
+    void setAge_AgeUnder18() {
+        webUser.setAge(16);
+        Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
+        Assertions.assertAll(() -> {
+            assertFalse(violations.isEmpty());
+            assertEquals("age must be between 18 and 90",
+                    violations.iterator().next().getMessage());
+        });
+    }
+
+    @Test
+    void setAge_AgeOver90() {
+        webUser.setAge(96);
+        Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
+        Assertions.assertAll(() -> {
+            assertFalse(violations.isEmpty());
+            assertEquals("age must be between 18 and 90",
+                    violations.iterator().next().getMessage());
+        });
+    }
+
+    @Test
+    void setAge_EmptyAge() {
+        webUser = new WebUser();
+        webUser.setName("Klaas");
+        Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
+        Assertions.assertAll(() -> {
+            assertFalse(violations.isEmpty());
+            assertEquals("age must be between 18 and 90",
+                    violations.iterator().next().getMessage());
+        });
+    }
+
+
 }

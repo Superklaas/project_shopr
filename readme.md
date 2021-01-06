@@ -2,9 +2,10 @@ DONE
 - review domain classes 
 - repositories with some basic methods
 - unit tests for ItemRepository class
+- test validation attributes entity
+
 
 TO DO
-- test validation attributes entity
 - index.html (localhost:9000)
     - “these are the items in webshop”
     - foto’s items

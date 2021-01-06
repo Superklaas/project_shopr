@@ -22,8 +22,7 @@ public class WebUser {
             message = "your first name cannot contain a number or a special character")
     private String name;
 
-    @NotNull
-    @Range(min=18,max=90)
+    @Range(min=18, max=90, message = "age must be between 18 and 90")
     private int age;
 
     @OneToMany(mappedBy = "webUser",
