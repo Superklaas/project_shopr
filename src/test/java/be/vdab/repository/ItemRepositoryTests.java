@@ -1,5 +1,6 @@
-package be.vdab;
+package be.vdab.repository;
 
+import be.vdab.ShoprApplication;
 import be.vdab.domain.item.Item;
 import be.vdab.repository.ItemRepository;
 import org.junit.jupiter.api.Test;

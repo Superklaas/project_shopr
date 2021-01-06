@@ -26,7 +26,7 @@ class WebUserTest {
     }
 
     @Test
-    void setName() {
+    void setName_CorrectName() {
         webUser.setName("Test test");
         assertEquals("Test test", webUser.getName());
         Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
@@ -34,12 +34,13 @@ class WebUserTest {
     }
 
     @Test
-    void setWrongName() {
+    void setName_WrongName() {
         webUser.setName("Test8466 test");
         Set<ConstraintViolation<WebUser>> violations = validator.validate(webUser);
         Assertions.assertAll(() -> {
             assertFalse(violations.isEmpty());
-            assertEquals("your first name cannot contain a number or a special character", violations.iterator().next().getMessage());
+            assertEquals("your first name cannot contain a number or a special character",
+                    violations.iterator().next().getMessage());
         });
     }
 }

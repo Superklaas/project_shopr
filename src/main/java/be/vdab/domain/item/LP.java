@@ -26,8 +26,7 @@ public class LP extends Item {
         this.artist = artist;
     }
 
-    public LP() {
-    }
+    public LP() {}
 
     public String getLpTitle() {
         return lpTitle;
